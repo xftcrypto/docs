@@ -37,6 +37,12 @@ ADMIN_PRIVATE_KEY=
 USER_PRIVATE_KEY=
 USDX_PROXY_ADDRESS=0x421C76cd7C1550c4fcc974F4d74c870150c45995
 ```
+### Repo 
+```
+usdxAbi.json
+.env
+```
+
 
 
 ### Sepolia
