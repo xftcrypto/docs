@@ -29,6 +29,12 @@ sequenceDiagram
 
 # TECHNICAL ARCHITECTURE
 
+### .env
+```.env
+RPC_URL=
+```
+
+
 ### Sepolia
 | Description           | Address                                    |
 |-----------------------|--------------------------------------------|
