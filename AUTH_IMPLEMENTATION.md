@@ -1,5 +1,23 @@
 # XFT Authentication Implementation
 
+```
+We're adding v1 API endpoints to allow frontend apps to authenticate without requiring the Firebase SDK.
+The new endpoints:
+/api/v1/signin: Handles email login completely server-side
+/api/v1/signup: Creates user accounts and returns ready-to-use tokens
+/api/v1/wallet-auth: Processes wallet signatures and manages wallet-based accounts
+/api/v1/refresh-token: Extends user sessions without reauthentication
+/api/v1/user-profile: Retrieves user data
+/api/v1/verify-token: Validates authentication tokens
+
+This works by:
+Creating Firebase users on the server
+Handling all token generation server-side
+Returning tokens directly usable in API requests
+Managing session persistence through refresh tokens
+
+Frontend apps can now authenticate with simple fetch calls without importing Firebase libraries, simplifying integration and reducing bundle size.
+```
 
 ### AUTH SERVER 
 Base URL: auth.xft.finance
