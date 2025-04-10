@@ -1,5 +1,32 @@
 # XFT Authentication Implementation
 
+
+### AUTH SERVER 
+Base URL: auth.xft.finance
+
+POST /api/wallet-auth
+- Request: address, signature, message
+- Response: customToken
+- Security: None
+
+POST /api/signup
+- Request: email, password
+- Response: message, uid
+- Security: None
+
+POST /api/verify-token
+- Request: None
+- Headers: Authorization (Bearer token)
+- Response: verified (boolean), user (object)
+- Security: Bearer
+
+GET /health
+- Request: None
+- Response: status, timestamp
+- Security: None
+
+
+
 ## Core Authentication Files
 
 ### client/src/lib/auth.ts - Authentication API Integration:
