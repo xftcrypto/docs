@@ -1,0 +1,46 @@
+sequenceDiagram
+   actor User
+   participant App as app.xft.finance
+   participant Auth as auth.xft.finance
+   participant Backend as XFT Backend API
+   
+   User->>App: Visit application
+   App->>App: Check for stored token
+   
+   alt No token found
+       App->>App: Redirect to Auth page
+       User->>App: Select auth method
+       
+       alt Wallet Login
+           App->>User: Request wallet connection
+           User->>App: Connect wallet
+           App->>User: Request signature
+           User->>App: Sign message
+           App->>Auth: POST /api/wallet-auth
+           Auth->>Auth: Verify signature
+           Auth->>App: Return custom token
+       else Email Login
+           User->>App: Enter email/password
+           App->>Auth: POST /api/signup
+           Auth->>App: Return UID
+       end
+       
+       App->>App: Store token in localStorage
+   end
+   
+   App->>Auth: POST /api/verify-token
+   Auth->>App: Return verification status
+   
+   alt Token Valid
+       App->>App: Render protected content
+       App->>Backend: API requests with auth header
+       Backend->>App: Return data
+       User->>App: Interact with application
+   else Token Invalid
+       App->>App: Clear token
+       App->>App: Redirect to Auth page
+   end
+   
+   User->>App: Logout
+   App->>App: Clear token
+   App->>App: Redirect to Auth page
