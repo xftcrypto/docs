@@ -1,0 +1,34 @@
+sequenceDiagram
+    actor User
+    participant App as app.xft.finance
+    participant Auth as auth.xft.finance
+    
+    User->>App: Visit application
+    App->>App: Check for stored token
+    
+    alt No token found
+        App->>App: Show login options
+        
+        alt Wallet Login
+            User->>App: Choose wallet login
+            App->>User: Request wallet signature
+            User->>App: Sign message
+            App->>Auth: POST /api/wallet-auth
+            Auth->>App: Return token
+        else Email Login
+            User->>App: Enter email/password
+            App->>Auth: POST /api/signup
+            Auth->>App: Return token
+        end
+        
+        App->>App: Store token locally
+    end
+    
+    App->>Auth: Verify token
+    Auth->>App: Verification result
+    
+    alt Token Valid
+        App->>App: Show dashboard
+    else Token Invalid
+        App->>App: Return to login
+    end
