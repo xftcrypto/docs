@@ -2,6 +2,7 @@
 
 ```
 We're adding v1 API endpoints to allow frontend apps to authenticate without requiring the Firebase SDK.
+
 The new endpoints:
 /api/v1/signin: Handles email login completely server-side
 /api/v1/signup: Creates user accounts and returns ready-to-use tokens
